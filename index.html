@@ -1510,16 +1510,49 @@
       conceptSvg.appendChild(line);
     }
 
-    /* ─── FORM ─── */
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    /* ─── FORM → SUPABASE ─── */
+    const SUPABASE_URL = 'https://wzhmpdmhrcqmdskddzph.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6aG1wZG1ocmNxbWRza2RkenBoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTk3ODYsImV4cCI6MjA5MDE5NTc4Nn0.QOx3uZurKidiO74xWnSC12R4Qao3pKWFHSItazo24cY';
+
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const data = new FormData(this);
-      let valid = true;
-      for (const [, value] of data.entries()) {
-        if (!value.trim()) { valid = false; break; }
-      }
-      if (valid) {
-        this.innerHTML = '<p class="form-success">Gracias. Te contactaré pronto.</p>';
+      const form = this;
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+
+      // Validate
+      const nombre = form.nombre.value.trim();
+      const whatsapp = form.whatsapp.value.trim();
+      const dedicacion = form.dedicacion.value.trim();
+      const objetivo = form.objetivo.value.trim();
+
+      if (!nombre || !whatsapp || !dedicacion || !objetivo) return;
+
+      // Loading state
+      btn.innerHTML = 'Enviando...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ nombre, whatsapp, dedicacion, objetivo })
+        });
+
+        if (res.ok) {
+          form.innerHTML = '<p class="form-success">Gracias. Te contactaré pronto.</p>';
+        } else {
+          throw new Error('Error al enviar');
+        }
+      } catch (err) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        alert('Hubo un error. Intenta de nuevo.');
       }
     });
 
