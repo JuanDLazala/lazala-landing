@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAZALA — Arquitecto de Influencia</title>
+  <meta name="description" content="Juan Lazala — Construyo el hilo invisible que convierte ideas en influencia real.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #FFFFFF;
+      --dark: #252053;
+      --support: #A7B4C9;
+      --accent: #36388F;
+      --cta: #D92830;
+      --font-sans: 'Nunito Sans', -apple-system, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+      --space-2xl: 10rem;
+      --radius: 0;
+      --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--white);
+      background: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    /* ─── DESIGN TOKENS: TYPOGRAPHY ─── */
+    .t-display {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+
+    .t-h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .t-h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .t-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .t-body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    .t-small {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .t-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    /* ─── DESIGN TOKENS: COMPONENTS ─── */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-line {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: var(--space-md);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.4rem;
+      background: var(--cta);
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '→';
+      transition: transform var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: #b8222a;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:hover::after {
+      transform: translateX(4px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.4rem;
+      background: transparent;
+      color: var(--support);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(167, 180, 201, 0.25);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-ghost:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    .btn-ghost-dark {
+      color: var(--dark);
+      border-color: rgba(37, 32, 83, 0.2);
+    }
+
+    .btn-ghost-dark:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2.2rem;
+      background: var(--dark);
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-linkedin:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 32, 83, 0.25);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      transition: box-shadow var(--transition);
+    }
+
+    nav.scrolled {
+      box-shadow: 0 1px 30px rgba(37, 32, 83, 0.06);
+    }
+
+    .nav-logo-img {
+      height: 30px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      padding: 0.7rem 2rem;
+      background: var(--cta);
+      color: var(--white) !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: #b8222a; color: var(--white) !important; transform: translateY(-1px); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 101;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--dark);
+      margin: 5px 0;
+      transition: var(--transition);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      padding-top: 5rem;
+    }
+
+    /* Centered confrontational layout */
+    .hero-centered {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .hero-topline {
+      display: inline-block;
+      color: var(--support);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.4em;
+    }
+
+    .hero-main {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-impact {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--cta);
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-support {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--support);
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ─── SECTION: LIGHT ─── */
+    .s-light {
+      background: var(--white);
+      color: var(--dark);
+      padding: var(--space-2xl) 0;
+    }
+
+    .s-light .t-body,
+    .s-light .t-small { color: #5a5a6e; }
+
+    .s-light .section-line { background: var(--accent); }
+
+    /* ─── SECTION: DARK ─── */
+    .s-dark {
+      background: var(--dark);
+      color: var(--white);
+      padding: var(--space-2xl) 0;
+    }
+
+    .s-dark .t-body,
+    .s-dark .t-small { color: var(--support); }
+
+    /* ─── CONCEPT ─── */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .concept-visual {
+      position: relative;
+      height: 420px;
+    }
+
+    .concept-visual svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .concept-visual svg line {
+      stroke: var(--accent);
+      stroke-width: 0.4;
+      opacity: 0.12;
+    }
+
+    /* ─── PROBLEM ─── */
+    .problem-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .problem-inner .section-line { margin: 0 auto var(--space-md); }
+
+    .problem-quote {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--support);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(167, 180, 201, 0.1);
+      font-weight: 500;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border: 1px solid rgba(37,32,83,0.06);
+      overflow: hidden;
+    }
+
+    .about-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter var(--transition);
+    }
+
+    .about-photo:hover { filter: grayscale(0%); }
+
+    .about-text-block {
+      margin-top: var(--space-md);
+    }
+
+    .about-text-block p + p {
+      margin-top: var(--space-sm);
+    }
+
+    /* ─── BOOK ─── */
+    .book-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .book-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .book-cover {
+      aspect-ratio: 3/4;
+      border: 1px solid rgba(167, 180, 201, 0.08);
+      overflow: hidden;
+    }
+
+    .book-badge {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border: 1px solid rgba(217, 40, 48, 0.3);
+      color: var(--cta);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+    }
+
+    .book-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: var(--space-md);
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .book-hook {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cta);
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .book-list {
+      list-style: none;
+      margin: 1.2rem 0;
+      padding: 0;
+    }
+
+    .book-list li {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--support);
+      padding: 0.4rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      font-weight: 400;
+    }
+
+    .book-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .book-closing {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .book-download-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .download-icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .book-microcopy {
+      font-size: 0.68rem;
+      color: rgba(167, 180, 201, 0.5);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── BOOK MODAL ─── */
+    .book-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(20, 17, 50, 0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .book-modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .book-modal {
+      background: var(--white);
+      max-width: 740px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      border-radius: 14px;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.35s ease;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    }
+
+    .book-modal-overlay.active .book-modal {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      margin: 1.2rem 1.2rem 0 0;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--support);
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all var(--transition);
+      z-index: 2;
+    }
+
+    .modal-close:hover {
+      background: rgba(37, 32, 83, 0.06);
+      color: var(--dark);
+    }
+
+    .modal-body {
+      padding: 3rem 3.5rem 3rem;
+      color: var(--dark);
+    }
+
+    .modal-label {
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    .modal-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--support);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin: 2rem 0;
+    }
+
+    .modal-intro {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+      font-weight: 400;
+    }
+
+    .modal-question {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--dark);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .modal-section {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(37, 32, 83, 0.06);
+    }
+
+    .modal-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .modal-section-num {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: rgba(37, 32, 83, 0.15);
+      margin-bottom: 0.3rem;
+    }
+
+    .modal-section-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .modal-section-text {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .modal-highlight {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 0.6rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--accent);
+    }
+
+    .modal-closing {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(37, 32, 83, 0.06);
+      margin-top: 1rem;
+    }
+
+    .modal-closing p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 0.3rem;
+    }
+
+    .modal-closing-bold {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .modal-cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .modal-cta .btn-primary::after {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .modal-body { padding: 2rem 1.5rem; }
+      .book-modal { max-height: 90vh; border-radius: 10px; }
+    }
+
+    /* ─── AUTHORITY ─── */
+    .authority-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .authority-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .authority-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(167, 180, 201, 0.08);
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .authority-item-num {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: rgba(167, 180, 201, 0.3);
+      line-height: 1;
+      padding-top: 0.2rem;
+    }
+
+    .authority-item-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .authority-item-text {
+      font-size: 0.85rem;
+      color: var(--support);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ─── SOLUTION / PRODUCT ─── */
+    .solution-inner {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .solution-inner .section-line { margin: 0 auto var(--space-md); }
+
+    .solution-card {
+      margin-top: var(--space-lg);
+      padding: var(--space-lg);
+      border: 1px solid rgba(37, 32, 83, 0.08);
+      background: rgba(54, 56, 143, 0.02);
+      text-align: left;
+    }
+
+    .solution-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm) var(--space-md);
+      margin: var(--space-md) 0;
+    }
+
+    .solution-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: #5a5a6e;
+    }
+
+    .solution-feature::before {
+      content: '';
+      width: 6px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ─── FORM ─── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .form-wrapper form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.85rem 0;
+      border: none;
+      border-bottom: 1px solid rgba(37, 32, 83, 0.12);
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--dark);
+      outline: none;
+      transition: border-color var(--transition);
+      resize: none;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: #c0c0c0;
+    }
+
+    .form-success {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--dark);
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    /* ─── STUDIO ─── */
+    .studio-inner {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .studio-inner .section-line { margin: 0 auto var(--space-md); }
+
+    .studio-services {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .studio-tag {
+      padding: 0.6rem 1.4rem;
+      border: 1px solid rgba(167, 180, 201, 0.12);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--support);
+      transition: all var(--transition);
+    }
+
+    .studio-tag:hover {
+      border-color: var(--support);
+      color: var(--white);
+    }
+
+    /* ─── BLOG ─── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: var(--space-lg);
+    }
+
+    .blog-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(37, 32, 83, 0.05);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .blog-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .blog-card-label {
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      background: rgba(54, 56, 143, 0.06);
+      margin-bottom: var(--space-sm);
+    }
+
+    .blog-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+
+    .blog-card-excerpt {
+      font-size: 0.85rem;
+      color: #888;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    .blog-card-date {
+      font-size: 0.72rem;
+      color: var(--support);
+      margin-top: 1rem;
+      font-weight: 300;
+    }
+
+    .blog-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: gap var(--transition);
+    }
+
+    .blog-card-link:hover { gap: 0.8rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3rem 0;
+      background: var(--dark);
+      border-top: 1px solid rgba(167, 180, 201, 0.06);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo-img {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: rgba(167, 180, 201, 0.5);
+      font-weight: 400;
+    }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+
+      .hero-centered,
+      .concept-grid,
+      .about-grid,
+      .book-grid,
+      .authority-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .blog-grid { grid-template-columns: 1fr; }
+
+      .solution-features { grid-template-columns: 1fr; }
+
+      .s-light, .s-dark { padding: var(--space-xl) 0; }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .hero-buttons { flex-direction: column; align-items: center; }
+
+      .book-cover { aspect-ratio: auto; padding: 4rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="#"><img src="assets/logo.png" alt="LAZALA" class="nav-logo-img"></a>
+    <ul class="nav-links" id="navLinks" role="menubar">
+      <li role="none"><a href="#concepto" role="menuitem">Concepto</a></li>
+      <li role="none"><a href="#sobre" role="menuitem">Sobre</a></li>
+      <li role="none"><a href="#blog" role="menuitem">Ideas</a></li>
+      <li role="none"><a href="#contacto" class="nav-cta" role="menuitem">Aplicar</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="hero-centered">
+        <p class="hero-topline t-label reveal">Arquitecto de Influencia</p>
+        <h1 class="hero-main reveal reveal-delay-1">Si hoy nadie te escucha,<br>no es falta de talento.</h1>
+        <p class="hero-impact reveal reveal-delay-2">Es falta de estructura.</p>
+        <p class="hero-support reveal reveal-delay-2">Construyo la estructura invisible que convierte ideas en influencia real.</p>
+        <div class="hero-buttons reveal reveal-delay-3">
+          <a href="#contacto" class="btn-primary">Aplicar</a>
+          <a href="#concepto" class="btn-ghost">Trabajar conmigo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONCEPTO ─── -->
+  <section class="s-light" id="concepto">
+    <div class="container">
+      <div class="concept-grid">
+        <div class="reveal">
+          <div class="section-line"></div>
+          <p class="t-label" style="color:var(--accent);margin-bottom:1.5rem;">El concepto</p>
+          <h2 class="t-h1" style="color:var(--dark);margin-bottom:1.5rem;">¿Qué es el<br>hilo invisible?</h2>
+          <p class="t-body" style="margin-bottom:1rem;">La influencia no se ve, pero se construye. Es la estructura que conecta quién eres, lo que dices y cómo el mundo responde.</p>
+          <p class="t-body">Un sistema silencioso que transforma presencia en poder, y palabras en posicionamiento.</p>
+        </div>
+        <div class="concept-visual reveal" aria-hidden="true">
+          <svg id="conceptSvg" viewBox="0 0 400 420"></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROBLEMA ─── -->
+  <section class="s-dark" id="problema">
+    <div class="container">
+      <div class="problem-inner reveal">
+        <div class="section-line"></div>
+        <p class="t-label" style="color:var(--support);margin-bottom:1.5rem;">La verdad</p>
+        <h2 class="t-h1" style="margin-bottom:1.5rem;">Si hoy eres invisible,<br>no es falta de talento</h2>
+        <p class="t-body">Es falta de estructura. Personas con valor real pasan desapercibidas todos los días porque no han construido su influencia.</p>
+        <p class="problem-quote">"El talento sin estructura es ruido.<br>La influencia es arquitectura."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOBRE JUAN LAZALA ─── -->
+  <section class="s-light" id="sobre">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="assets/juan1.jpg" alt="Juan Lazala" class="about-photo">
+        </div>
+        <div class="reveal">
+          <div class="section-line"></div>
+          <p class="t-label" style="color:var(--accent);margin-bottom:1.5rem;">Sobre</p>
+          <h2 class="t-h1" style="color:var(--dark);margin-bottom:1.5rem;">Juan Lazala</h2>
+          <div class="about-text-block">
+            <p class="t-body">Juan Lazala es Arquitecto de Influencia. Ha trabajado en la construcción de narrativa, posicionamiento y estrategia en escenarios reales, incluyendo campañas políticas y proyectos de alto impacto.</p>
+            <p class="t-body">Su enfoque no se basa en teorías, sino en entender cómo se construye la influencia en la práctica.</p>
+          </div>
+          <a href="https://www.linkedin.com/in/juan-david-lazala-silva-b1289045/" target="_blank" rel="noopener noreferrer" class="btn-linkedin" style="margin-top:2rem;">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EL LIBRO ─── -->
+  <section class="s-dark" id="libro">
+    <div class="container">
+      <div class="book-grid">
+        <div class="book-cover reveal">
+          <img src="assets/Portada.jpg" alt="Portada — Cómo se gana una elección sin estar en el país" class="book-cover-img">
+        </div>
+        <div class="reveal">
+          <div class="section-line"></div>
+          <span class="book-badge">Disponible ahora</span>
+          <h2 class="t-h1" style="margin-bottom:1rem;">Cómo se gana una elección… sin estar en el país.</h2>
+          <p class="book-hook">Si crees que las elecciones se ganan con plata, pauta o likes… este libro te va a incomodar.</p>
+          <p class="t-body" style="margin-bottom:0.8rem;">Porque aquí no hay teoría. Hay una campaña que nadie esperaba ganar… y terminó cambiando la forma de leer el voto exterior.</p>
+          <ul class="book-list">
+            <li>Cómo leer un mapa que otros no ven</li>
+            <li>Cómo mover votos sin depender del volumen</li>
+            <li>Cómo convertir estrategia en resultado real</li>
+          </ul>
+          <p class="book-closing">Esto no explica una victoria. Explica por qué otros pierden.</p>
+          <div class="book-buttons">
+            <button class="btn-primary" id="btnLeerAvances" onclick="openBookModal()">Leer el libro</button>
+            <div class="book-download-wrap">
+              <a href="assets/JDL_CCE_Cómo_Se_Gana_Una Elección…_Sin_Estar_En_El_País.pdf"
+                 download="Como-se-gana-una-eleccion-Juan-Lazala.pdf"
+                 class="btn-ghost btn-download"
+                 id="btnDescargar">
+                <span class="download-icon">↓</span> Descubrir el modelo
+              </a>
+              <p class="book-microcopy">Extracto real del libro · lectura directa del proceso</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MODAL: LEER AVANCES ─── -->
+  <div class="book-modal-overlay" id="bookModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="closeBookModal(event)">
+    <div class="book-modal" id="bookModal">
+      <button class="modal-close" onclick="closeBookModal()" aria-label="Cerrar">✕</button>
+      <div class="modal-body">
+        <p class="modal-label t-label">Vista previa</p>
+        <h2 class="modal-title" id="modalTitle">Cómo se gana una elección… sin estar en el país.</h2>
+        <p class="modal-subtitle">Una campaña que nadie esperaba ganar. Un modelo que nadie estaba viendo.</p>
+        <div class="modal-divider"></div>
+
+        <p class="modal-intro">Este libro nace en el peor momento posible: cuando los datos mostraban que íbamos perdiendo. Ahí apareció la pregunta que lo cambia todo:</p>
+        <p class="modal-question">¿Qué es lo que los demás no están viendo?</p>
+
+        <div class="modal-section">
+          <p class="modal-section-num">01</p>
+          <h3 class="modal-section-title">La ventaja no está en los recursos</h3>
+          <p class="modal-section-text">Las campañas no pierden por falta de dinero. Pierden por leer mal el territorio.</p>
+          <p class="modal-highlight">No gana el que más invierte — gana el que mejor interpreta.</p>
+        </div>
+
+        <div class="modal-section">
+          <p class="modal-section-num">02</p>
+          <h3 class="modal-section-title">El error que todos cometen</h3>
+          <p class="modal-section-text">Durante años, el voto exterior fue tratado como un complemento. Un error. Porque el migrante no piensa igual, no vota igual, y nadie le estaba hablando de verdad.</p>
+        </div>
+
+        <div class="modal-section">
+          <p class="modal-section-num">03</p>
+          <h3 class="modal-section-title">El cambio de juego</h3>
+          <p class="modal-section-text">Mientras todos competían en Estados Unidos, la estrategia hizo algo distinto: recuperar Europa, activar Latinoamérica, dejar de depender del volumen.</p>
+          <p class="modal-highlight">No buscar más votos — leer distinto los que ya existían.</p>
+        </div>
+
+        <div class="modal-section">
+          <p class="modal-section-num">04</p>
+          <h3 class="modal-section-title">De estrategia a acción</h3>
+          <p class="modal-section-text">La campaña dejó de ser digital… y se volvió humana. Conversaciones reales, redes de confianza, WhatsApp como sistema de decisión.</p>
+          <p class="modal-highlight">Los votos no se ganaron en redes — se cerraron en conversaciones.</p>
+        </div>
+
+        <div class="modal-section">
+          <p class="modal-section-num">05</p>
+          <h3 class="modal-section-title">La noche donde todo cambió</h3>
+          <p class="modal-section-text">Los números decían derrota. Pero la lectura decía otra cosa: los votos que faltaban aún no habían entrado. Y cuando entraron… la elección cambió.</p>
+        </div>
+
+        <div class="modal-section">
+          <p class="modal-section-num">06</p>
+          <h3 class="modal-section-title">El resultado</h3>
+          <p class="modal-section-text">Más de 58.000 votos. Pero más importante:</p>
+          <p class="modal-highlight">Un modelo replicable — una forma distinta de ganar.</p>
+        </div>
+
+        <div class="modal-closing">
+          <p>Este libro no te enseña qué hacer.</p>
+          <p class="modal-closing-bold">Te enseña algo más peligroso: cómo ver lo que otros no ven.</p>
+        </div>
+
+        <div class="modal-cta">
+          <a href="assets/JDL_CCE_Cómo_Se_Gana_Una Elección…_Sin_Estar_En_El_País.pdf"
+             download="Como-se-gana-una-eleccion-Juan-Lazala.pdf"
+             class="btn-primary"
+             onclick="trackDownload()">
+            <span>↓</span> Descargar el libro completo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── AUTORIDAD ─── -->
+  <section class="s-dark" id="autoridad" style="padding-top:0;">
+    <div class="container">
+      <div class="authority-grid">
+        <div class="reveal">
+          <div class="section-line"></div>
+          <p class="t-label" style="color:var(--support);margin-bottom:1.5rem;">Trayectoria</p>
+          <h2 class="t-h1" style="margin-bottom:1.5rem;">Influencia construida en escenarios reales</h2>
+          <p class="t-body">No desde la teoría. Desde la trinchera. Cada sistema que diseño nace de la experiencia directa en entornos de alta presión.</p>
+        </div>
+        <div class="authority-items reveal">
+          <div class="authority-item">
+            <span class="authority-item-num">01</span>
+            <div>
+              <p class="authority-item-title">Campañas políticas ganadoras</p>
+              <p class="authority-item-text">Estrategia de narrativa y posicionamiento en procesos electorales de alto impacto.</p>
+            </div>
+          </div>
+          <div class="authority-item">
+            <span class="authority-item-num">02</span>
+            <div>
+              <p class="authority-item-title">Estrategia internacional</p>
+              <p class="authority-item-text">Consultoría de influencia y comunicación para actores en escenarios globales.</p>
+            </div>
+          </div>
+          <div class="authority-item">
+            <span class="authority-item-num">03</span>
+            <div>
+              <p class="authority-item-title">Narrativa estratégica</p>
+              <p class="authority-item-text">Construcción de relatos que transforman percepción en autoridad y resultados.</p>
+            </div>
+          </div>
+          <div class="authority-item">
+            <span class="authority-item-num">04</span>
+            <div>
+              <p class="authority-item-title">Sistemas de influencia</p>
+              <p class="authority-item-text">Arquitectura de posicionamiento para líderes, marcas y organizaciones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOLUCIÓN / PRODUCTO ─── -->
+  <section class="s-light" id="programa">
+    <div class="container">
+      <div class="solution-inner reveal">
+        <div class="section-line"></div>
+        <p class="t-label" style="color:var(--accent);margin-bottom:1.5rem;">El programa</p>
+        <h2 class="t-h1" style="color:var(--dark);margin-bottom:1.5rem;">De Invisible<br>a Influyente</h2>
+        <p class="t-body">Un sistema para construir tu posicionamiento y convertirlo en resultados reales. No es un curso. Es una arquitectura personalizada de influencia.</p>
+      </div>
+      <div class="solution-card reveal">
+        <h3 class="t-h2" style="color:var(--dark);margin-bottom:0.5rem;">Tu sistema de influencia</h3>
+        <p class="t-small" style="margin-bottom:1.5rem;">Diagnóstico, estrategia, narrativa y ejecución. Todo diseñado para que dejes de ser invisible y empieces a ser inevitable.</p>
+        <div class="solution-features">
+          <span class="solution-feature">Diagnóstico de posicionamiento</span>
+          <span class="solution-feature">Estrategia de narrativa</span>
+          <span class="solution-feature">Arquitectura de influencia</span>
+          <span class="solution-feature">Ejecución y resultados</span>
+        </div>
+        <a href="#contacto" class="btn-primary">Aplicar ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FORMULARIO ─── -->
+  <section class="s-light" id="contacto" style="padding-top:0;">
+    <div class="container">
+      <div class="form-grid">
+        <div class="reveal">
+          <div class="section-line"></div>
+          <p class="t-label" style="color:var(--accent);margin-bottom:1.5rem;">Contacto</p>
+          <h2 class="t-h1" style="color:var(--dark);margin-bottom:1.5rem;">Comienza a construir tu influencia</h2>
+          <p class="t-body">Completa el formulario. Si tu perfil encaja, te contactaré personalmente.</p>
+        </div>
+        <div class="form-wrapper reveal">
+          <form id="contactForm" novalidate>
+            <div class="form-field">
+              <label class="t-label" for="nombre" style="color:var(--support);">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="form-field">
+              <label class="t-label" for="whatsapp" style="color:var(--support);">WhatsApp</label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="+00 000 000 0000" required>
+            </div>
+            <div class="form-field">
+              <label class="t-label" for="dedicacion" style="color:var(--support);">¿A qué te dedicas?</label>
+              <input type="text" id="dedicacion" name="dedicacion" placeholder="Tu profesión o actividad" required>
+            </div>
+            <div class="form-field">
+              <label class="t-label" for="objetivo" style="color:var(--support);">¿Qué quieres lograr?</label>
+              <textarea id="objetivo" name="objetivo" rows="3" placeholder="Describe brevemente tu objetivo" required></textarea>
+            </div>
+            <div>
+              <button type="submit" class="btn-primary">Enviar solicitud</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LAZALA STUDIO ─── -->
+  <section class="s-dark" id="studio" style="padding:6rem 0;">
+    <div class="container">
+      <div class="studio-inner reveal">
+        <div class="section-line"></div>
+        <p class="t-label" style="color:var(--support);margin-bottom:1.5rem;">Ejecución completa</p>
+        <h2 class="t-h2" style="margin-bottom:1.5rem;">LAZALA Studio</h2>
+        <p class="t-body" style="max-width:500px;margin:0 auto;">Para proyectos que requieren ejecución completa, LAZALA Studio desarrolla estrategia, narrativa y sistemas de posicionamiento.</p>
+        <div class="studio-services">
+          <span class="studio-tag">Estrategia</span>
+          <span class="studio-tag">Narrativa</span>
+          <span class="studio-tag">Posicionamiento</span>
+          <span class="studio-tag">Sistemas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BLOG / CONTENIDO ─── -->
+  <section class="s-light" id="blog">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-line"></div>
+        <p class="t-label" style="color:var(--accent);margin-bottom:1.5rem;">Pensamiento</p>
+        <h2 class="t-h1" style="color:var(--dark);">Ideas sobre influencia,<br>narrativa y poder</h2>
+      </div>
+      <div class="blog-grid" id="blogGrid">
+        <!-- Posts loaded dynamically from posts/posts.json -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <img src="assets/logo_V2.png" alt="LAZALA" class="footer-logo-img">
+        <p class="footer-text">© 2026 LAZALA. Arquitectura de Influencia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── NAV ─── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ─── SCROLL REVEAL ─── */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    /* ─── HERO CANVAS: ANIMATED THREADS ─── */
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, threads;
+
+    function initCanvas() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+      threads = [];
+      const count = Math.floor(w / 35);
+      for (let i = 0; i < count; i++) {
+        threads.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          len: 120 + Math.random() * 280,
+          angle: Math.random() * Math.PI * 2,
+          speed: 0.0005 + Math.random() * 0.0015,
+          opacity: 0.015 + Math.random() * 0.025
+        });
+      }
+    }
+
+    function drawCanvas() {
+      ctx.clearRect(0, 0, w, h);
+      threads.forEach(t => {
+        t.angle += t.speed;
+        const x2 = t.x + Math.cos(t.angle) * t.len;
+        const y2 = t.y + Math.sin(t.angle) * t.len;
+        ctx.beginPath();
+        ctx.moveTo(t.x, t.y);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = `rgba(167, 180, 201, ${t.opacity})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      });
+      requestAnimationFrame(drawCanvas);
+    }
+
+    initCanvas();
+    drawCanvas();
+    window.addEventListener('resize', initCanvas);
+
+    /* ─── CONCEPT SVG THREADS ─── */
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const conceptSvg = document.getElementById('conceptSvg');
+    for (let i = 0; i < 50; i++) {
+      const line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('x1', Math.random() * 400);
+      line.setAttribute('y1', Math.random() * 420);
+      line.setAttribute('x2', Math.random() * 400);
+      line.setAttribute('y2', Math.random() * 420);
+      conceptSvg.appendChild(line);
+    }
+
+    /* ─── FORM ─── */
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      let valid = true;
+      for (const [, value] of data.entries()) {
+        if (!value.trim()) { valid = false; break; }
+      }
+      if (valid) {
+        this.innerHTML = '<p class="form-success">Gracias. Te contactaré pronto.</p>';
+      }
+    });
+
+    /* ─── BOOK MODAL ─── */
+    const overlay = document.getElementById('bookModalOverlay');
+
+    function openBookModal() {
+      overlay.style.display = 'flex';
+      requestAnimationFrame(() => {
+        overlay.classList.add('active');
+      });
+      document.body.style.overflow = 'hidden';
+      // Track
+      if (typeof gtag === 'function') gtag('event', 'book_preview_open');
+    }
+
+    function closeBookModal(e) {
+      if (e && e.target !== overlay) return;
+      overlay.classList.remove('active');
+      setTimeout(() => { overlay.style.display = 'none'; }, 350);
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        closeBookModal();
+      }
+    });
+
+    function trackDownload() {
+      if (typeof gtag === 'function') gtag('event', 'book_pdf_download');
+    }
+
+    // Track section download button too
+    const btnDescargar = document.getElementById('btnDescargar');
+    if (btnDescargar) btnDescargar.addEventListener('click', trackDownload);
+
+    /* ─── BLOG DINÁMICO ─── */
+    const blogGrid = document.getElementById('blogGrid');
+
+    function formatDate(dateStr) {
+      return new Date(dateStr + 'T00:00:00').toLocaleDateString('es-ES', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+    }
+
+    fetch('posts/posts.json')
+      .then(r => r.json())
+      .then(posts => {
+        // Sort by date descending, show latest 3
+        const sorted = posts
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 3);
+
+        blogGrid.innerHTML = sorted.map((post, i) => `
+          <article class="blog-card reveal reveal-delay-${i + 1}">
+            <span class="blog-card-label t-label" style="color:var(--accent);font-size:0.65rem;">${post.category}</span>
+            <h3 class="blog-card-title">${post.title}</h3>
+            <p class="blog-card-excerpt">${post.excerpt}</p>
+            <p class="blog-card-date">${formatDate(post.date)}</p>
+            <a href="post.html?slug=${post.slug}" class="blog-card-link">Leer más →</a>
+          </article>
+        `).join('');
+
+        // Re-observe new elements for reveal animation
+        blogGrid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      })
+      .catch(() => {
+        blogGrid.innerHTML = '<p style="color:#888;font-size:0.9rem;">No se pudieron cargar los artículos.</p>';
+      });
+  </script>
+</body>
+</html>
