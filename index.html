@@ -1,13 +1,64 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAZALA — Arquitecto de Influencia</title>
-  <meta name="description" content="Juan Lazala — Construyo el hilo invisible que convierte ideas en influencia real.">
+
+  <!-- SEO Primary -->
+  <title>LAZALA — Juan Lazala | Arquitecto de Influencia</title>
+  <meta name="description" content="Juan Lazala es Arquitecto de Influencia. Construyo la estructura invisible que convierte ideas en influencia real. Programa De Invisible a Influyente.">
+  <meta name="keywords" content="arquitecto de influencia, posicionamiento personal, narrativa estratégica, Juan Lazala, LAZALA, influencia, marca personal, estrategia política">
+  <meta name="author" content="Juan David Lazala Silva">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lazala.netlify.app/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lazala.netlify.app/">
+  <meta property="og:title" content="LAZALA — Arquitecto de Influencia">
+  <meta property="og:description" content="Si hoy nadie te escucha, no es falta de talento. Es falta de estructura. Construyo la estructura invisible que convierte ideas en influencia real.">
+  <meta property="og:image" content="https://lazala.netlify.app/assets/miniatura whatsapp-01.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="LAZALA">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LAZALA — Arquitecto de Influencia">
+  <meta name="twitter:description" content="Si hoy nadie te escucha, no es falta de talento. Es falta de estructura.">
+  <meta name="twitter:image" content="https://lazala.netlify.app/assets/miniatura whatsapp-01.png">
+
+  <!-- WhatsApp / Telegram (uses OG tags above) -->
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "LAZALA",
+    "description": "Arquitectura de Influencia — Posicionamiento, narrativa y estrategia.",
+    "url": "https://lazala.netlify.app",
+    "founder": {
+      "@type": "Person",
+      "name": "Juan David Lazala Silva",
+      "jobTitle": "Arquitecto de Influencia",
+      "url": "https://www.linkedin.com/in/juan-david-lazala-silva-b1289045/"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/juan-david-lazala-silva-b1289045/"
+    ]
+  }
+  </script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1090,6 +1141,7 @@
 <body>
 
   <!-- ─── NAV ─── -->
+  <header>
   <nav id="navbar" role="navigation" aria-label="Navegación principal">
     <a href="#"><img src="assets/logo.png" alt="LAZALA" class="nav-logo-img"></a>
     <ul class="nav-links" id="navLinks" role="menubar">
@@ -1102,9 +1154,12 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+  </header>
+
+  <main>
 
   <!-- ─── HERO ─── -->
-  <section class="hero" id="hero">
+  <section class="hero" id="hero" aria-label="Presentación">
     <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
     <div class="container">
       <div class="hero-centered">
@@ -1156,7 +1211,7 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal">
-          <img src="assets/juan1.jpg" alt="Juan Lazala" class="about-photo">
+          <img src="assets/juan1.jpg" alt="Juan Lazala — Arquitecto de Influencia" class="about-photo" loading="lazy" width="560" height="700">
         </div>
         <div class="reveal">
           <div class="section-line"></div>
@@ -1177,7 +1232,7 @@
     <div class="container">
       <div class="book-grid">
         <div class="book-cover reveal">
-          <img src="assets/Portada.jpg" alt="Portada — Cómo se gana una elección sin estar en el país" class="book-cover-img">
+          <img src="assets/Portada.jpg" alt="Portada — Cómo se gana una elección sin estar en el país" class="book-cover-img" loading="lazy" width="400" height="533">
         </div>
         <div class="reveal">
           <div class="section-line"></div>
@@ -1409,10 +1464,33 @@
         <h2 class="t-h1" style="color:var(--dark);">Ideas sobre influencia,<br>narrativa y poder</h2>
       </div>
       <div class="blog-grid" id="blogGrid">
-        <!-- Posts loaded dynamically from posts/posts.json -->
+        <!-- Pre-rendered for SEO / crawlers -->
+        <article class="blog-card reveal reveal-delay-1">
+          <span class="blog-card-label t-label" style="color:var(--accent);font-size:0.65rem;">Influencia</span>
+          <h3 class="blog-card-title">Por qué el talento no basta para ser visible</h3>
+          <p class="blog-card-excerpt">La mayoría confunde visibilidad con ruido. La verdadera influencia se construye con estructura, no con volumen.</p>
+          <p class="blog-card-date">20 de marzo de 2026</p>
+          <a href="post.html?slug=por-que-el-talento-no-basta" class="blog-card-link">Leer más →</a>
+        </article>
+        <article class="blog-card reveal reveal-delay-2">
+          <span class="blog-card-label t-label" style="color:var(--accent);font-size:0.65rem;">Narrativa</span>
+          <h3 class="blog-card-title">El poder de la historia que no cuentas</h3>
+          <p class="blog-card-excerpt">Lo que omites define tu posicionamiento tanto como lo que dices. La narrativa estratégica es selección, no acumulación.</p>
+          <p class="blog-card-date">12 de marzo de 2026</p>
+          <a href="post.html?slug=el-poder-de-la-historia-que-no-cuentas" class="blog-card-link">Leer más →</a>
+        </article>
+        <article class="blog-card reveal reveal-delay-3">
+          <span class="blog-card-label t-label" style="color:var(--accent);font-size:0.65rem;">Estrategia</span>
+          <h3 class="blog-card-title">Arquitectura invisible: cómo se diseña la autoridad</h3>
+          <p class="blog-card-excerpt">Detrás de cada figura influyente hay un sistema. No es carisma. Es ingeniería de percepción.</p>
+          <p class="blog-card-date">5 de marzo de 2026</p>
+          <a href="post.html?slug=arquitectura-invisible-como-se-disena-la-autoridad" class="blog-card-link">Leer más →</a>
+        </article>
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ─── FOOTER ─── -->
   <footer>
