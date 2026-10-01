@@ -160,6 +160,58 @@
       font-weight: 700;
     }
 
+    .article-body h2 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--dark);
+      margin: 3.2rem 0 1.2rem;
+    }
+
+    .article-body h2::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--cta);
+      margin-bottom: 1rem;
+    }
+
+    .article-body strong { color: var(--dark); font-weight: 700; }
+    .article-body em { font-style: italic; }
+
+    .article-body ol {
+      margin: 0 0 2rem 1.4rem;
+      padding: 0;
+    }
+
+    .article-body ol li {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 0.9rem;
+      padding-left: 0.4rem;
+    }
+
+    .article-body ol li::marker {
+      font-family: var(--font-serif);
+      color: var(--cta);
+      font-weight: 700;
+    }
+
+    .article-body blockquote {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--dark);
+      border-left: 3px solid var(--cta);
+      padding: 0.4rem 0 0.4rem 1.4rem;
+      margin: 2rem 0 2.2rem;
+    }
+
     /* FOOTER NAV */
     .article-footer {
       max-width: 640px;
@@ -330,7 +382,7 @@
           </header>
           <div class="article-divider"></div>
           <article class="article-body">
-            ${post.content.map(p => `<p>${p}</p>`).join('')}
+            ${post.content.map(p => /^<(h2|h3|ol|ul|blockquote|hr)/.test(p.trim()) ? p : `<p>${p}</p>`).join('')}
           </article>
           <div class="article-footer">
             <a href="index.html#blog">← Todas las ideas</a>
