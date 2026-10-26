@@ -201,6 +201,10 @@
       font-weight: 700;
     }
 
+    .article-body table { width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:.95rem; display:block; overflow-x:auto; }
+    .article-body th, .article-body td { border-bottom:1px solid rgba(0,0,0,.12); padding:.6rem .75rem; text-align:left; vertical-align:top; }
+    .article-body th { font-weight:700; }
+    .article-body small { display:block; font-size:.8rem; opacity:.75; margin-top:1.5rem; line-height:1.5; }
     .article-body blockquote {
       font-family: var(--font-serif);
       font-size: 1.45rem;
@@ -265,17 +269,43 @@
     }
 
     .related-card {
+      position: relative;
+      overflow: hidden;
       padding: 2rem;
       background: var(--white);
       border: 1px solid rgba(37, 32, 83, 0.04);
-      transition: all var(--transition);
+      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.35s ease;
       text-decoration: none;
       display: block;
     }
 
-    .related-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
+    .related-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      height: 3px; width: 100%;
+      background: var(--cta);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .related-card:hover,
+    .related-card:focus-visible {
+      border-color: rgba(37, 32, 83, 0.12);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px -18px rgba(37, 32, 83, 0.35);
+      outline: none;
+    }
+
+    .related-card:hover::before,
+    .related-card:focus-visible::before { transform: scaleX(1); }
+
+    .related-card:active { transform: translateY(-2px); transition-duration: 0.1s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .related-card, .related-card::before { transition: none; }
+      .related-card:hover, .related-card:focus-visible { transform: none; }
     }
 
     .related-card-cat {
@@ -382,7 +412,7 @@
           </header>
           <div class="article-divider"></div>
           <article class="article-body">
-            ${post.content.map(p => /^<(h2|h3|ol|ul|blockquote|hr)/.test(p.trim()) ? p : `<p>${p}</p>`).join('')}
+            ${post.content.map(p => /^<(h2|h3|ol|ul|blockquote|hr|table|small)/.test(p.trim()) ? p : `<p>${p}</p>`).join('')}
           </article>
           <div class="article-footer">
             <a href="index.html#blog">← Todas las ideas</a>

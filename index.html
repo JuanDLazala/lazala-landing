@@ -1208,15 +1208,55 @@
     }
 
     .blog-card {
+      position: relative;
       padding: 2.5rem 2rem;
       border: 1px solid rgba(37, 32, 83, 0.05);
-      transition: all var(--transition);
+      background: #fff;
+      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.35s ease;
       cursor: pointer;
+      overflow: hidden;
     }
 
-    .blog-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
+    /* barra de acento que crece al pasar el cursor */
+    .blog-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      height: 3px; width: 100%;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .blog-card:hover,
+    .blog-card:focus-within {
+      border-color: rgba(37, 32, 83, 0.12);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px -18px rgba(37, 32, 83, 0.35);
+    }
+
+    .blog-card:hover::before,
+    .blog-card:focus-within::before { transform: scaleX(1); }
+
+    .blog-card:active { transform: translateY(-2px); transition-duration: 0.1s; }
+
+    .blog-card-title { transition: color 0.3s ease; }
+    .blog-card:hover .blog-card-title { color: var(--accent); }
+
+    /* toda la tarjeta es clicable: el enlace se estira sobre la tarjeta */
+    .blog-card-link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .blog-card-link:focus-visible { outline: none; }
+    .blog-card:has(.blog-card-link:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blog-card, .blog-card::before { transition: none; }
+      .blog-card:hover, .blog-card:focus-within { transform: none; }
     }
 
     .blog-card-label {
@@ -1262,7 +1302,8 @@
       transition: gap var(--transition);
     }
 
-    .blog-card-link:hover { gap: 0.8rem; }
+    .blog-card-link:hover,
+    .blog-card:hover .blog-card-link { gap: 0.8rem; }
 
     /* ─── FOOTER ─── */
     footer {
