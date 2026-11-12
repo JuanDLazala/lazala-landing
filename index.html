@@ -334,6 +334,21 @@
     }
 
     .nav-cta::after { display: none !important; }
+
+    /* Acceso de clientes al CRM: discreto, para no competir con "Conversemos". */
+    .nav-clientes {
+      padding: 0.65rem 1.4rem;
+      border: 1px solid var(--dark);
+      color: var(--dark) !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .nav-clientes::after { display: none !important; }
+    .nav-clientes:hover { border-color: var(--cta); color: var(--cta) !important; }
     .nav-cta:hover { background: #b8222a; color: var(--white) !important; transform: translateY(-1px); }
 
     .nav-toggle {
@@ -1507,6 +1522,7 @@
       <li role="none"><a href="#casos" role="menuitem">Casos</a></li>
       <li role="none"><a href="#sobre" role="menuitem">Sobre</a></li>
       <li role="none"><a href="#analisis" role="menuitem">Análisis</a></li>
+      <li role="none"><a href="https://crm.lazala.co" class="nav-clientes" role="menuitem">Clientes</a></li>
       <li role="none"><a href="#conversemos" class="nav-cta" role="menuitem">Conversemos</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
